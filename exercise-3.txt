@@ -1,0 +1,57 @@
+-----------------------------------------------------------------------------------------
+					EXERCISE 3
+-----------------------------------------------------------------------------------------
+
+1. Display all the Supplier names with the initial letter capital.
+ANS - select  concat(substr(upper(sname),1,1),substr(lower(sname),2)) from supplier;
+
+-----------------------------------------------------------------------------------------
+
+2. Display all the Supplier names in upper case.
+ANS - select  upper(sname) from supplier;
+
+-----------------------------------------------------------------------------------------
+
+3. Display all the Supplier names in lower case.
+ANS - select lower(sname) from supplier;
+
+-----------------------------------------------------------------------------------------
+
+4. Display all the Supplier names padded to 25 characters, with spaces on the left.
+ANS - select lpad(sname,25,' ') from supplier;
+
+-----------------------------------------------------------------------------------------
+
+5. Display all the Supplier names (with ‘la’ replaced by ‘ro’).
+ HINT: REPLACE.
+ANS - select replace(sname,'la','ro');
+
+-----------------------------------------------------------------------------------------
+
+6. Implement the above command such that ‘l’ is replaced with ‘r’ and ‘a’ is replaced
+with ‘o’.
+ANS - 1.select replace(sname,'l','r'),replace(sname,'a','o') from supplier;
+      2.select  replace(replace(sname,'l','r'),'a','o') sname from supplier;
+
+-----------------------------------------------------------------------------------------
+
+7. Display the Supplier names and the lengths of the names.
+ANS - select sname, length(sname) from supplier;
+
+-----------------------------------------------------------------------------------------
+
+8. Use the soundex function to search for a supplier by the name of ‘BLOKE’.
+ANS - select * from supplier where soundex(sname)= soundex('BLOKE');
+
+-----------------------------------------------------------------------------------------
+
+9. Display the Supplier name and the status (as Ten, Twenty, Thirty, etc.).
+ANS - select sname ,sstatus from supplier where sstatus=10 or sstatus=20 or sstatus=30;
+
+-----------------------------------------------------------------------------------------
+
+10. Display the current day (e.g. Thursday).
+ANS - select now();
+      select curdate(); 
+
+-----------------------------------------------------------------------------------------
