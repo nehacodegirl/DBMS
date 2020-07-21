@@ -157,7 +157,8 @@ create table SUPPLIER_PARTS_PROJECT
 (
     Sid CHAR(4),
     Pno VARCHAR(10),
-    Jno VARCHAR(10)
+    Jno VARCHAR(10),
+    Qty int(5);
 );
 
 Write the SELECT queries to do the following:-
