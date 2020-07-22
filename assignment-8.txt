@@ -1,0 +1,34 @@
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+							ASSIGNMENT-8
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+1) Assume each salesperson has a 12% commission. Write a query on the orders table that will produce the order number, 
+the salesperson number, and the amount of the salesperson’s commission for that order.
+
+ANS - select onum, snum, amt,amt*0.12 commision from orders;
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+2) Write a query on the Customers table that will find the highest rating in each city. Put the output in this form:
+For the city (city), the highest rating is : (rating).
+
+ANS - select city, max(rating)as "highest rating" from customer group by city;
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+3) Write a query that lists customers in descending order of rating. 
+  Output the rating field first, followed by the customer’s name and number.
+
+ ANS - select rating, cname,snum from customer order by rating desc;
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+ 
+4) Write a query that totals the orders for each day and places the results in descending order.
+
+ANS - select odate, count(odate) as "total order" from orders group by odate order by 2 desc;
+
+--------------------------------------------------------------------------------------------------------------------------------------------
