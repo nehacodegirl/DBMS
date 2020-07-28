@@ -1,0 +1,36 @@
+
+-------------------------------------------------------------------------------------------------------------------------
+
+						ASSIGNMENT - 12
+
+-------------------------------------------------------------------------------------------------------------------------
+
+1) Write a query that selects all customers whose ratings are equal to or greater than ANY of Serres’.
+ANS-select * from salespeople;
+     select *  from customer 
+     where rating >=any( select  rating from customer where snum in(select snum from salespeople where sname = 'serres'));
+
+------------------------------------------------------------------------------------------------------------------------
+
+2) Write a query using ANY or ALL that will find all salespeople who have no customers located in their city.
+ANS- select distinct sname,salespeople.city from salespeople,customer 
+     where  salespeople.city  !=all (select city from customer);
+
+-------------------------------------------------------------------------------------------------------------------------
+
+3) Write a query that selects all orders for amounts greater than any for the customers in London.
+ANS-1.select onum, amt from orders 
+      where amt >any (select amt from orders where cnum =any (select cnum from customer where city = 'london'));
+
+    2.select amt,cnum from orders where cnum =any (select cnum from customer where city = 'london');
+
+--------------------------------------------------------------------------------------------------------------------------
+
+4) Write the above query using MIN or MAX.
+ANS-1.select onum, amt from orders 
+      where amt > (select min(amt) from orders where cnum =any (select cnum from customer where city = 'london'));
+
+   2.select onum, amt from orders 
+    where amt > (select min(amt)  from orders,customer where customer.cnum=orders.cnum and customer.city ='london' );
+
+--------------------------------------------------------------------------------------------------------------------------

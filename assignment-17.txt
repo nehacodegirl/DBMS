@@ -1,0 +1,45 @@
+--------------------------------------------------------------------------------------------------------------------------------
+
+							ASSIGNMENT - 17
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+1) Create the Orders table so that all onum values as well as all combinations of
+cnum and snum are different from one another, and so that NULL values are
+excluded from the date field.
+ANS-
+desc orders;
+
+create  table orders1 
+as 
+select * from orders;
+create index ind_orders1_onum_cnum_snum on orders1(onum,cnum,snum);
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+2) Create the Salespeople table so that the default commission is 10% with no
+NULLS permitted, snum is the primary key, and all names fall alphabetically
+between A and M, inclusive (assume all names will be uppercase).
+ANS
+create table salespeople2
+( snum int(4) auto_increment primary key,
+  sname  char(20) check (substr(upper(sname),1) between 'A' and 'M'),
+  comm float(3,2) default 0.10 not null
+);
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+3) Create the Orders table, making sure that the onum is greater than the cnum, and
+the cnum is greater that the snum. Allow no NULLS in any of these three fields.
+ANS-
+create table orders2
+(
+onum int(4) not null,
+amt float(7,2),
+odate date ,
+cnum int(4) not null,
+snum int(4) not null,
+check (onum > cnum and cnum > snum)
+);
+
+------------------------------------------------------------------------------------------------------------------------------------
