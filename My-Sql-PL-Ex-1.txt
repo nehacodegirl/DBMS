@@ -1,0 +1,164 @@
+----------------------------------------------------------------------------------------------------------------
+
+						MYSQL-PL-EX-1
+
+----------------------------------------------------------------------------------------------------------------
+
+Q 1. Write a program that computes the perimeter and the area of a rectangle. Define
+your own values for the length and width. (Assuming that L and W are the length
+and width of the rectangle, Perimeter = 2*(L+W) and Area = L*W.
+ANS - 
+create table rectangle(
+   perimeter float(7,2),
+   area float(7,2)
+   );
+
+ delimiter //
+ create procedure rectangleP(L float(4,2),W float(4,2))
+ begin
+		declare perimeter float(7,2);
+        declare area float(7,2);
+         set perimeter = 2*(L+W);
+         set area = L*W;
+         insert into rectangle values(perimeter,area);
+ end;//
+ delimiter ;
+ 
+ call rectangleP(10,5);
+ select * from rectangle;
+
+------------------------------------------------------------------------------------------------------------- 
+
+
+2. Write a program that declares an integer variable called num, assigns a value to it,
+and computes and inserts into the tempp table the value of the variable itself, its
+square, and its cube.
+
+ANS-
+
+create table tempp1
+(
+     num int(4) not null,
+     square int(10),
+     cubes int(10)
+);
+
+delimiter //
+create procedure operation()
+begin
+		declare num int(4);
+        declare sq int(10);
+        declare cubes int(10);
+         set num = 5;
+         set sq = num*num;
+         set cubes = num*num*num;
+         insert into tempp1 values(num,sq,cubes);         
+end;//
+delimiter ;
+
+call operation();
+select * from tempp1; 
+
+------------------------------------------------------------------------------------------------------------------
+
+3. Convert a temperature in Fahrenheit (F) to its equivalent in Celsius (C) and vice
+versa. The required formulae are:- C= (F-32)*5/9
+F= 9/5*C + 32
+ANS -
+
+create table tempt1(
+celsius float(7,2),
+fahrenheit float(7,2)
+);
+
+delimiter //
+create procedure temperature2(F int(5),C int(5))
+begin
+		declare cel float(7,2);
+        declare fah float(7,2);
+        set cel = (F-32)*5/9;
+        set fah = 9/5*C + 32;
+        insert into tempt1 values (cel,fah);
+end;//
+delimiter ;
+
+call temperature2(12,45);
+select * from tempt1;
+call temperature2(12,12);
+
+--------------------------------------------------------------------------------------------------------------------
+
+4. Convert a number of inches into yards, feet, and inches. For example, 124 inches
+equals 3 yards, 1 foot, and 4 inches.
+
+ANS-
+ 
+create table conversion(
+yard int(5),
+feet int(5),
+inches int(5)
+);
+
+delimiter //
+create procedure conversion_P(x int(5))
+begin
+	declare Y int(5);
+	declare F int(5);
+    declare I int(5);
+    set Y = x/36;
+    set F = (x%36)/12;
+    set I = (x%36)%12;
+    insert into conversion values(Y,F,I);
+end;//
+delimiter ;
+
+call conversion_P(125);
+select * from conversion;
+
+---------------------------------------------------------------------------------------------------------------------
+
+5. Write a program that enables a user to input an integer. The program should then
+state whether the integer is evenly divisible by 5.
+
+ANS-
+
+create table tab(
+num int(5),
+ stats char(20)
+);
+
+delimiter //
+create procedure  div_5(x int(10))
+begin
+		declare y int(5);
+        set y =(x%5);
+        if y=0 then
+			insert into tab values(x,'No is divisible by 5');
+		else
+            insert into tab values(x,'No is not divisible by 5');
+        end if;
+end; //
+delimiter ;
+
+call div_5(125);
+select * from tab
+
+--------------------------------------------------------------------------------------------------------------------
+
+6. Your block should read in two real numbers and tell whether the product of the two
+numbers is equal to or greater than 100. 
+
+ANS - 
+ 
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------    
