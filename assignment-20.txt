@@ -56,13 +56,13 @@ Orders table called Entryorders to insert rows into the Orders table. Create the
 Orders table, so that SYSDATE is automatically inserted for odate if no value is
 given. Then create the Entryorders view so that no values can be given. 
 
+ANS -
 
-
-create table ORDERS5
+create table  if not exists ORDERS
 ( 
 	Onum int(4),
 	Amt float(7,2),
-    Odate datetime default now() ,
+    Odate date default current_timestamp ,
     Cnum int(4),
     Snum int(4)
 );
@@ -70,9 +70,7 @@ create table ORDERS5
 
 create view Entryorders_v
 as
-select * from orders4 with check option;
-select * from orders4;
-insert into entryorders_v values(null,null,null,null,null);
+select * from orders with check option;
 
 -----------------------------------------------------------------------------------------------------------------------
 
