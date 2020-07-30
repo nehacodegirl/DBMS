@@ -36,6 +36,14 @@ GRANT UPDATE ON v1 TO Abhijeet;
 5) Allow Vikram to query the Customers table, but restrict his access to those
 customers whose rating is the lowest.
 ANS-
+create or replace view v2 as
+SELECT *
+FROM customers
+WHERE rating NOT IN
+    (SELECT min(rating)
+     FROM customers);
+
+grant select on v2 to Vikram;
 
 
 -------------------------------------------------------------------------------------------------------
